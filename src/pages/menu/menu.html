@@ -1,0 +1,29 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+      <ion-card>
+          <img src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app.jpg" />
+          <div class="card-title">Ram Kishan Sarees</div>
+          <div class="card-subtitle">Keep Shopping</div>
+      </ion-card>
+
+
+    <ion-list>
+      <button menuClose ion-item>
+        Home
+      </button>
+      <ion-item *ngFor="let category of categories" text-wrap (click)="openCategoryPage(category)" menuClose>
+          <ion-icon [name]="category.icon" item-left large></ion-icon>
+        <h2> {{ category.name }}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<ion-nav #content [root]="homepage"></ion-nav>

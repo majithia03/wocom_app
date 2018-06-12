@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-slides autoplay="3000" pager>
+      <ion-slide>
+      <img src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app4.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app.jpg" />
+    </ion-slide>
+   </ion-slides>
+  </ion-card>
+
+  <ion-item inline>
+  <img style="margin-right:5px;" src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app3.jpg" />
+  <img src="http://localhost/wordpress/wp-content/uploads/2018/04/banner-for-mobile-app2.jpg" />
+  </ion-item>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-slides #productSlides>
+        <ion-slide *ngFor="let product of products">
+          <ion-card no-padding>
+              <img [src]="product.images[0].src" />
+              <h1 padding center> {{ product.name }} </h1>
+            <p center padding [innerHTML]="product.short_description"></p>
+        </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+      <ion-item *ngFor="let product of moreProducts" text-wrap (click)="openProductPage(product)">
+        <ion-thumbnail item-left>
+          
+                <img [src]="product.images[0].src" />
+            
+        </ion-thumbnail>
+  
+        <h2> {{ product.name }} </h2>
+  
+        <p>
+          <span [innerHTML]="product.short_description.substr(0, 35) + '...'"></span>
+          <span [innerHTML]="product.price_html"></span>
+        </p>
+
+        <button ion-button icon clear item-right>
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+  
+      </ion-item>
+    </ion-list>
+    
+    
+  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>

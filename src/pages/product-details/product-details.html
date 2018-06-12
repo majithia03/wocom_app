@@ -1,0 +1,67 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{ product.name }} </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-fab right top edge (click)="openCart()">
+        <button ion-fab color="danger"><ion-icon name="cart"></ion-icon></button>
+      </ion-fab>
+
+  <ion-card>
+    <ion-slides autoplay="3000">
+      <ion-slide *ngFor="let image of product.images">
+        <img [src]="image.src" />
+      </ion-slide>
+    </ion-slides>
+
+    <ion-card-content>
+      <ion-card-title>
+        {{ product.name }} &nbsp;
+        <ion-chip *ngFor="let cat of product.categories" style="margin-left: 5px;">
+          <ion-label color="danger"> {{ product.categories }} </ion-label>
+        </ion-chip>
+      </ion-card-title>
+
+      <p [innerHTML]="product.description"></p>
+
+      <button ion-button icon-left block outline color="danger" (click)="addToCart(product)">
+      <ion-icon name="basket"></ion-icon> Add to Cart for ₹ {{product.price}}
+    </button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card >
+      <ion-card-content>
+        <ion-card-title>
+          Specifications
+        </ion-card-title>
+  
+        <ion-grid>
+          <ion-row *ngFor="let att of product.attributes">
+            <ion-col col-4>
+              {{ att.name}}
+            </ion-col>
+            <ion-col col-8>
+              <span *ngFor="let option of att.options"> {{ option }}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+
+
+
+
+
+
+  
+  
